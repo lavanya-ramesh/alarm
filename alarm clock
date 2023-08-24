@@ -1,0 +1,22 @@
+import time
+import winsound
+
+def set_alarm():
+    alarm_time = input("Set the alarm time (HH:MM AM/PM): ")
+    alarm_hour, alarm_minute = map(int, alarm_time[:-6].split(':'))
+    am_pm = alarm_time[-2:]
+
+    if am_pm == 'PM':
+        alarm_hour += 12
+
+    while True:
+        current_time = time.localtime()
+        if current_time.tm_hour == alarm_hour and current_time.tm_min == alarm_minute:
+            print("Time's up! Alarm is ringing...")
+            winsound.Beep(1000, 1000)  # Beep sound for 1 second
+            break
+
+        time.sleep(30)  # Check every 30 seconds
+
+set_alarm()
+0
